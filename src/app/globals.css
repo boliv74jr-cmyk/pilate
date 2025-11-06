@@ -1,1 +1,14 @@
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+
+html, body { height: 100%; }
+body { background: radial-gradient(1200px 600px at 20% -10%, #123 0%, transparent 40%),
+radial-gradient(900px 600px at 100% 0%, #161e33 0%, transparent 35%),
+var(--bg); }
+
+
+input, textarea, select { outline: none; }
+```
