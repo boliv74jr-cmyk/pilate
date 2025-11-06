@@ -1,4 +1,4 @@
-```prisma
+
 generator client {
 provider = "prisma-client-js"
 }
@@ -64,7 +64,4 @@ productId Int
 qty Int
 priceCents Int
 }
-```
 
-
----
