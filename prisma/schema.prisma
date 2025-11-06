@@ -1,1 +1,70 @@
+```prisma
+generator client {
+provider = "prisma-client-js"
+}
 
+
+datasource db {
+provider = "sqlite"
+url = env("DATABASE_URL")
+}
+
+
+model User {
+id Int @id @default(autoincrement())
+email String @unique
+name String
+passwordHash String
+createdAt DateTime @default(now())
+orders Order[]
+}
+
+
+model Product {
+id Int @id @default(autoincrement())
+slug String @unique
+name String
+description String
+image String
+priceCents Int
+inStock Int @default(0)
+createdAt DateTime @default(now())
+}
+
+
+model Order {
+id Int @id @default(autoincrement())
+user User @relation(fields: [userId], references: [id])
+userId Int
+totalCents Int
+status String @default("PENDING")
+createdAt DateTime @default(now())
+items OrderItem[]
+// delivery fields
+fullName String
+email String
+phone String
+addressLine1 String
+addressLine2 String?
+suburb String
+state String
+postcode String
+deliveryNotes String?
+stairs Boolean @default(false)
+preferredWindow String?
+}
+
+
+model OrderItem {
+id Int @id @default(autoincrement())
+order Order @relation(fields: [orderId], references: [id])
+orderId Int
+product Product @relation(fields: [productId], references: [id])
+productId Int
+qty Int
+priceCents Int
+}
+```
+
+
+---
